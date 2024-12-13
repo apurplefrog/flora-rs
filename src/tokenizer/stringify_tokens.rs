@@ -14,7 +14,7 @@ pub fn stringify_token_chars(token_chars: Vec<char>) -> Vec<BasicToken> {
             }
             tokens.push(BasicToken::Word(token));
         } else if token_chars[char_index].is_numeric() {
-            while token_chars[char_index].is_numeric() {
+            while token_chars[char_index].is_numeric() || token_chars[char_index] == '.' {
                 token += &token_chars[char_index].to_string();
                 char_index += 1;
             }
