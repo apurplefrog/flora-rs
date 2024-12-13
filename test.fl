@@ -1,0 +1,9 @@
+insert stdlib::*;
+
+func main () > i4
+{
+  if (24 >= -10)
+  {
+    std::io::print("eek");
+  }
+}

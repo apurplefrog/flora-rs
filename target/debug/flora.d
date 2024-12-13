@@ -1,0 +1,1 @@
+/home/autumn/flora/target/debug/flora: /home/autumn/flora/src/command/mod.rs /home/autumn/flora/src/compiler/compiler_types.rs /home/autumn/flora/src/compiler/mod.rs /home/autumn/flora/src/main.rs /home/autumn/flora/src/tokenizer/mod.rs /home/autumn/flora/src/tokenizer/tokenizer.rs
