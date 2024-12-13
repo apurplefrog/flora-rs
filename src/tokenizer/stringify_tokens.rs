@@ -1,9 +1,4 @@
-#[derive(Debug)]
-pub enum BasicToken {
-    Word(String),
-    Number(String),
-    Operator(String),
-}
+use super::token_types::BasicToken;
 
 pub fn stringify_token_chars(token_chars: Vec<char>) -> Vec<BasicToken> {
     let mut tokens: Vec<BasicToken> = Vec::new();
