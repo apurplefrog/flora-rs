@@ -1,14 +1,14 @@
 use std::{env, fs, path::Path};
 
-use crate::compiler;
+use super::compiler::compiler_types::Compiler;
 
 pub fn initiate_command() {
-    let compiler = compiler::Compiler::new();
+    let compiler = Compiler::new();
     let args: Vec<String> = env::args().collect();
     let mut arg_index = 1;
     let mut flags = Vec::new();
-    let mut file_name = String::new();
-    let mut file_contents = Vec::new();
+    // let mut file_name = String::new();
+    let mut file_contents;
 
     while let Some(arg) = args.get(arg_index) {
         match arg.as_str() {
