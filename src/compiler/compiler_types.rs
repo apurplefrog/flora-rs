@@ -1,3 +1,5 @@
+// use crate::tokenizer;
+
 #[repr(u32)]
 pub enum CompilerFlags {
     MinimalOutput = 1,
@@ -34,3 +36,21 @@ impl CompilerVersion {
     }
 }
 
+#[derive(Default)]
+pub struct Compiler {
+    flags: u32,
+    version: CompilerVersion,
+}
+
+impl Compiler {
+    pub fn new() -> Self {
+        Self {
+            flags: CompilerFlags::StandardOutput | CompilerFlags::OptimizationLevel1,
+            version: CompilerVersion::current_version(),
+        }
+    }
+
+    pub fn compile(&self, chars: Vec<char>) -> CompilationResult {
+        CompilationResult::CompilationSuccess
+    }
+}
