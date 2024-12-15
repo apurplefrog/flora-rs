@@ -1,5 +1,7 @@
 // use crate::tokenizer;
 
+use crate::tokenizer::tokenize;
+
 #[repr(u32)]
 pub enum CompilerFlags {
     MinimalOutput = 1,
@@ -51,6 +53,7 @@ impl Compiler {
     }
 
     pub fn compile(&self, chars: Vec<char>) -> CompilationResult {
+        tokenize(chars);
         CompilationResult::CompilationSuccess
     }
 }
