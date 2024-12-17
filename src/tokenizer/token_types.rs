@@ -18,7 +18,7 @@ pub enum AdvancedToken {
     F32(f32),
     F64(f64),
 
-    // Operators,
+    // Comparisons,
     GreaterThan,
     LessThan,
     GreaterThanOrEqual,
@@ -26,12 +26,29 @@ pub enum AdvancedToken {
     IsEqual,
     SetEqual,
 
+    // Operators,
+    Add,
+    AddAndSet,
+    Subtract,
+    SubtractAndSet,
+    Multiply,
+    MultiplyAndSet,
+    Divide,
+    DivideAndSet,
+    Modulo,
+    ModuloAndSet,
+    Exponent,
+    ExponentAndSet,
+
+    // Symbols,
+    Then,
+
     // Brackets
     OpeningBrace,
     ClosingBrace,
     OpeningBracket,
     ClosingBracket,
-    OpeningSquarBracket,
+    OpeningSquareBracket,
     ClosingSquareBracket,
 
     // Core words
