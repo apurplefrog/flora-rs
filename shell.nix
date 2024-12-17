@@ -9,6 +9,6 @@ pkgs.mkShell {
   ];
 
   env = { 
-    RUST_BACKTRACE = "full";
+#    RUST_BACKTRACE = "full";
   }; 
 }
