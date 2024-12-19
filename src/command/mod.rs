@@ -28,7 +28,12 @@ pub fn initiate_command() {
                 let path = Path::new(name);
                 if let Ok(contents) = fs::read(path) {
                     file_contents = contents.iter().map(|&u| u as char).collect::<Vec<char>>();
-                    compiler.compile(file_contents);
+                    let compilation_succeeded = compiler.compile(file_contents);
+                    use super::compiler::compiler_types::CompilationResult::*;
+                    match compilation_succeeded {
+                        CompilationFailure => println!("Compilation Failed!"),
+                        CompilationSuccess => println!("Compiltation Succeeded!"),
+                    }
                 } else {
                     panic!();
                 }
