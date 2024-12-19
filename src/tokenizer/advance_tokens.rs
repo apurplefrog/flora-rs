@@ -10,6 +10,10 @@ pub fn advance_tokens(basic_tokens: Vec<BasicToken>) -> Vec<AdvancedToken> {
                 let mut operator_chars = operator.chars();
                 while let Some(nth_char) = operator_chars.nth(token_char_index) {
                     if nth_char == ';' {
+                    } else if nth_char == '(' {
+                        advanced_tokens.push(AdvancedToken::OpeningBracket);
+                    } else if nth_char == ')' {
+                        advanced_tokens.push(AdvancedToken::ClosingBracket);
                     } else if nth_char == '[' {
                         advanced_tokens.push(AdvancedToken::OpeningSquareBracket);
                     } else if nth_char == ']' {
@@ -87,11 +91,7 @@ pub fn advance_tokens(basic_tokens: Vec<BasicToken>) -> Vec<AdvancedToken> {
             },
 
             BasicToken::Number(number) => {
-                let mut num = String::new();
-
-                for c in number.chars() {}
-
-                advanced_tokens.push(AdvancedToken::I8(-4));
+                advanced_tokens.push(AdvancedToken::I32(i32::from_str_radix(number, 10).unwrap()));
             }
         }
         token_index += 1;
