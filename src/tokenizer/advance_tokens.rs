@@ -10,7 +10,7 @@ pub fn advance_tokens(basic_tokens: Vec<BasicToken>) -> Vec<AdvancedToken> {
                 let mut operator_chars = operator.chars();
                 while let Some(nth_char) = operator_chars.nth(token_char_index) {
                     match nth_char {
-                        ';' => (),
+                        ';' => advanced_tokens.push(AdvancedToken::NewLine),
                         '(' => advanced_tokens.push(AdvancedToken::OpeningBracket),
                         ')' => advanced_tokens.push(AdvancedToken::ClosingBracket),
                         '[' => advanced_tokens.push(AdvancedToken::OpeningSquareBracket),
@@ -68,7 +68,7 @@ pub fn advance_tokens(basic_tokens: Vec<BasicToken>) -> Vec<AdvancedToken> {
                             };
                             advanced_tokens.push(AdvancedToken::String(s.to_string()));
                         }
-                        _ => panic!(),
+                        _ => (),
                     }
                     token_char_index += 1;
                 }

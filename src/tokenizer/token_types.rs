@@ -43,6 +43,8 @@ pub enum AdvancedToken {
     MemberOf,
     String(String),
 
+    NewLine,
+
     // Symbols,
     Then,
 
