@@ -40,6 +40,9 @@ pub enum AdvancedToken {
     Exponent,
     ExponentAndSet,
 
+    MemberOf,
+    String(String),
+
     // Symbols,
     Then,
 
@@ -57,4 +60,9 @@ pub enum AdvancedToken {
     While,
     If,
     Else,
+    Variable,
+    Const,
+    Return,
+
+    Identifier(String),
 }
