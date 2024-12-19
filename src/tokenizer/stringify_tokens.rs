@@ -8,7 +8,7 @@ pub fn stringify_token_chars(token_chars: Vec<char>) -> Vec<BasicToken> {
         let mut token = String::new();
 
         if token_chars[char_index].is_alphabetic() {
-            while token_chars[char_index].is_alphanumeric() {
+            while token_chars[char_index].is_alphanumeric() || token_chars[char_index] == '_' {
                 token += &token_chars[char_index].to_string();
                 char_index += 1;
             }
