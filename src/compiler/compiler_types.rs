@@ -1,5 +1,3 @@
-// use crate::tokenizer;
-
 use crate::tokenizer::tokenize;
 
 #[repr(u32)]
@@ -53,7 +51,7 @@ impl Compiler {
     }
 
     pub fn compile(&self, chars: Vec<char>) -> CompilationResult {
-        tokenize(chars);
-        CompilationResult::CompilationSuccess
+        let advanced_tokens = tokenize(chars);
+        super::compiler::compile(advanced_tokens)
     }
 }
