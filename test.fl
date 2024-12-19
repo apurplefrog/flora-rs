@@ -1,9 +1,10 @@
-insert stdlib::*;
+include std;
 
-func main () > i4
+func main ()
 {
-  if (24 >= -10)
+  var var_i8 = 32;
+  if (var_i8 >= -10)
   {
-    std::io::print("eek");
+    std.io.print("eek");
   }
 }
