@@ -1,7 +1,10 @@
+use std::path::Path;
+
 use crate::tokenizer::tokenize;
 
 #[repr(u32)]
-pub enum CompilerFlags {
+#[derive(Debug)]
+pub enum CompilerFlag {
     MinimalOutput = 1,
     StandardOutput = 2,
     VerboseOutput = 4,
@@ -11,47 +14,35 @@ pub enum CompilerFlags {
     OptimizationLevelMax = 64,
 }
 
-pub enum CompilationResult {
-    CompilationFailure,
-    CompilationSuccess,
+#[derive(Debug)]
+pub struct CompilerFlags {
+    pub flags: u32,
 }
 
-impl std::ops::BitOr for CompilerFlags {
+#[derive(Debug)]
+pub enum CompilationResult {
+    Failure,
+    Success,
+}
+
+impl std::ops::BitOr for CompilerFlag {
     type Output = u32;
     fn bitor(self, rhs: Self) -> Self::Output {
         self as u32 | rhs as u32
     }
 }
 
-#[derive(Default)]
-pub struct CompilerVersion(String);
+#[derive(Default, Debug)]
+pub struct CompilerVersion {
+    current_version: String,
+}
+
+const CURRENT_VERSION: &str = "Alpha v1.0.0";
 
 impl CompilerVersion {
-    pub fn current_version() -> Self {
-        CompilerVersion("v1.0.0".to_string())
-    }
-
-    pub fn get_version(&self) -> String {
-        self.0.clone()
-    }
-}
-
-#[derive(Default)]
-pub struct Compiler {
-    flags: u32,
-    version: CompilerVersion,
-}
-
-impl Compiler {
-    pub fn new() -> Self {
+    pub fn get_current_version() -> CompilerVersion {
         Self {
-            flags: CompilerFlags::StandardOutput | CompilerFlags::OptimizationLevel1,
-            version: CompilerVersion::current_version(),
+            current_version: CURRENT_VERSION.to_string(),
         }
-    }
-
-    pub fn compile(&self, chars: Vec<char>) -> CompilationResult {
-        let advanced_tokens = tokenize(chars);
-        super::compiler::compile(advanced_tokens)
     }
 }
