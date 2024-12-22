@@ -1,13 +1,12 @@
 use std::{env, fs, path::Path};
 
-use super::compiler::compiler_types::Compiler;
+use crate::compiler::compiler::Compiler;
 
 pub fn initiate_command() {
-    let compiler = Compiler::new();
     let args: Vec<String> = env::args().collect();
+    let mut compiler = Compiler::new();
     let mut arg_index = 1;
     let mut flags = Vec::new();
-    // let mut file_name = String::new();
     let mut file_contents;
 
     while let Some(arg) = args.get(arg_index) {
@@ -24,6 +23,13 @@ pub fn initiate_command() {
                 }
             }
 
+            "-o" | "--output" => {
+                arg_index += 1;
+                let output_file = args.get(arg_index).unwrap();
+                let output_path = Path::new(output_file);
+                compiler.set_output_file(output_path);
+            }
+
             name => {
                 let path = Path::new(name);
                 if let Ok(contents) = fs::read(path) {
@@ -31,8 +37,8 @@ pub fn initiate_command() {
                     let compilation_succeeded = compiler.compile(file_contents);
                     use super::compiler::compiler_types::CompilationResult::*;
                     match compilation_succeeded {
-                        CompilationFailure => println!("Compilation Failed!"),
-                        CompilationSuccess => println!("Compiltation Succeeded!"),
+                        Failure => println!("Compilation Failed!"),
+                        Success => println!("Compiltation Succeeded!"),
                     }
                 } else {
                     panic!();
